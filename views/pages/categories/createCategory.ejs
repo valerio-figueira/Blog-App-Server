@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia - Blog App</title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./script/index.js" defer></script>
+</head>
+<body>
+    <%- include('../../partials/header') %>
+
+    <main class="container">
+        <section class="main-column">
+            <article class="post">
+                <h2>Criar Categoria</h2>
+                <%- include('../../partials/msg') %>
+
+                <form action="/categories" method="POST" class="form-cadastro" >
+                    <fieldset>
+                        <legend>Nova Categoria</legend>
+
+                        <div class="box">
+                            <label for="category-title">Título da categoria</label>
+                            <input type="text" required id="category-title" name="categoryTitle">
+                        </div>
+
+                        <div class="box">
+                            <label for="meta-title">Meta Título para SEO</label>
+                            <input type="text" required name="metaTitle" id="meta-title">
+                        </div>
+
+                        <div class="box">
+                            <label for="slug">Slug para URL da Categoria</label>
+                            <input type="text" required name="slug" id="slug">
+                        </div>
+
+                        <button class="btn" type="s
+                        ">Cadastrar Categoria</button>
+                    </fieldset>
+                </form>
+
+            </article>
+        </section>
+
+        <%- include('../../partials/sidecolumn') %>
+    </main>
+
+    <%- include('../../partials/footer') %>
+</body>
+</html>

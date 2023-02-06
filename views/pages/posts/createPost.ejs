@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tecnologia - Blog App</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="/script/index.js" defer></script>
+</head>
+<body>
+    <%- include('../../partials/header') %>
+
+    <main class="container">
+        <section class="main-column">
+            <article class="post">
+                <h2>Criar Postagem</h2>
+                <%- include('../../partials/msg') %>
+
+                <form action="/posts/" method="POST" class="form-cadastro" >
+                    <fieldset>
+                        <legend>Nova Postagem</legend>
+
+                        <div class="box">
+                            <label for="post-title">Título da Postagem</label>
+                            <input type="text" name="postTitle" id="post-title" required>
+                        </div>
+
+                        <div class="box">
+                            <label for="meta-title">Meta Título para SEO</label>
+                            <input type="text" name="metaTitle" id="meta-title" required>
+                        </div>
+
+                        <div class="box">
+                            <label for="slug">Slug para URL da Postagem</label>
+                            <input type="text" name="slug" id="slug" required>
+                        </div>
+
+                        <% if(categories.length > 0) { %>
+                            <div class="box">
+                                <label for="category">Categoria da postagem:</label>
+                                <select name="categoryID" id="category" multiple>
+                                    <% categories.forEach(function (category) { %>
+                                        <option value="<%= category.category_id %>"><%= category.title %></option>
+                                    <% }); %>
+                                </select>
+                            </div>
+                        <% } %>
+
+                        <div class="box">
+                            <label for="post-content">Digite o conteúdo da postagem aqui (com tags HTML)</label>
+                            <div class="elements-container">
+                                <div id="h2-tag" class="element">H2</div>
+                                <div id="h3-tag" class="element">H3</div>
+                                <div id="h4-tag" class="element">H4</div>
+                                <div id="h5-tag" class="element">H5</div>
+                                <div id="h6-tag" class="element">H6</div>
+                                <div id="p-tag" class="element">Paragraph</div>
+                                <div id="img-tag" class="element">IMG</div>
+                                <div id="anchor-tag" class="element">Link</div>
+                                <div id="ul-tag" class="element">Unordered List</div>
+                            </div>
+                            <textarea name="postContent" id="post-content" rows="15"></textarea>
+                        </div>
+
+                        <div class="box">
+                            <label for="publish">Deseja publicar imediatamente?</label>
+                            <select name="publish" id="publish">
+                                <option value="">Selecione</option>
+                                <option value="1">Sim</option>
+                                <option value="0">Não</option>
+                            </select>
+                        </div>
+
+                        <button class="btn" type="submit">Cadastrar Postagem</button>
+                    </fieldset>
+                </form>
+
+            </article>
+        </section>
+
+        <%- include('../../partials/sidecolumn') %>
+    </main>
+
+    <%- include('../../partials/footer') %>
+</body>
+</html>
